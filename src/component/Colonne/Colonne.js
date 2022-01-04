@@ -16,11 +16,13 @@ class Colonne extends React.Component {
 
     render() {
         return (
-            <div className='colonne d-grid gap-2'>
-                <div>
-                    Ma colonne.
+            <div className='colonne col'>
+                <div className="container">
+                    <p>
+                        Ma colonne.
+                    </p>
+                    <Vignette></Vignette>
                 </div>
-                <Vignette></Vignette>
             </div>
         );
     }
