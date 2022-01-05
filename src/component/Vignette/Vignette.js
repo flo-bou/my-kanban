@@ -16,8 +16,8 @@ class Vignette extends React.Component {
     render() {
         return (
             <div className="row">
-                <button className='vignette btn btn-light col' type='button'>
-                    Vignette
+                <button className='vignette btn btn-light col gy-1' type='button'>
+                    {this.props.title}
                 </button>
             </div>
         );
