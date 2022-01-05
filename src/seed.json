@@ -1,0 +1,56 @@
+[
+    {
+        "To do": [
+            {
+                "title": "Ajout des dates aux vignettes",
+                "description": "Il faut ajouter des dates aux vignettes",
+                "start": "format-date",
+                "end": "format-date",
+                "checklist": [
+                    {
+                        "name": "Element 1",
+                        "checked": true
+                    },
+                    {
+                        "name": "Element 2",
+                        "checked": false
+                    }
+                ]
+            },
+            {
+                "title": "Vignette2",
+                "description": "Ma description",
+                "start": "",
+                "end": ""
+            }
+        ]
+    },
+    {
+        "Doing": [
+            {
+                "title": "Composant colonne",
+                "description": "",
+                "start": "format-date",
+                "end": "format-date",
+                "checklist": [
+                    {
+                        "name": "Créer le widget de création/edition de vignette (modal bootstrap)",
+                        "checked": false
+                    },
+                    {
+                        "name": "Titre modifiable dans le widget",
+                        "checked": true
+                    },
+                    {
+                        "name": "Description modifiable dans le widget",
+                        "checked": true
+                    },
+                    {
+                        "name": "Afficher correctement titre (et potentiellement description tronquée) dans le tableau",
+                        "checked": false
+                    }
+                ]
+            }
+        ]
+    }
+]

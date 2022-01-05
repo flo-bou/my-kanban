@@ -8,7 +8,11 @@ class Tableau extends React.Component {
         this.addColumnToState = this.addColumnToState.bind(this);
         this.rmColumnFromState = this.rmColumnFromState.bind(this);
         this.displayColumn = this.displayColumn.bind(this);
-        this.state = { columns: [ 'Colonne 1', 'Colonne 2' ] }; // initialisation des données state
+        this.state = this.props.dataTableau; // array of colonne objects
+
+        // use this.state to store then display datas from this.props.dataTableau
+        // modify them using setSate
+        // send state containing every relevent data to children
     }
 
     generateKey(){
@@ -17,23 +21,29 @@ class Tableau extends React.Component {
     }
 
     addColumnToState() {
-        let temps = this.state.columns;
-        let noColum = temps.length + 1;
-        temps.push('Colonne ' + noColum);
-        this.setState({ columns: temps });
+        let temps = this.state;
+        // console.log('temps : ', temps);
+        // define strucure of column object
+        let newColumnName = 'Colonne ' + (temps.length + 1).toString();
+        let newColumn = {};
+        newColumn[newColumnName] = [];
+        // console.log('newColumn : ', newColumn);
+        temps.push(newColumn);
+        // put new column object in state
+        this.setState(temps);
     }
 
     rmColumnFromState(columnName) {
-        let temps = this.state.columns;
-        let newColumns = temps.filter((value) => {
-            return value!==columnName;
-        });
-        this.setState({ columns: newColumns });
+        // let temps = this.state;
+        // let newColumns = temps.filter((value) => {
+        //     return value!==columnName;
+        // });
+        // this.setState(newColumns);
     }
 
     displayColumn(columns){
-        let elems = columns.map((value) => {
-            return <Colonne title={value} key={this.generateKey()} id={this.generateKey()} rmColumn={this.rmColumnFromState}></Colonne>;
+        let elems = columns.map((value, index) => {
+            return <Colonne key={this.generateKey()} id={this.generateKey()} rmColumn={this.rmColumnFromState} dataColonne={value}></Colonne>;
         });
         return elems;
     }
@@ -48,7 +58,7 @@ class Tableau extends React.Component {
                 </p>
                 <div className="container border rounded border-secondary">
                     <div className="row">
-                        {this.displayColumn(this.state.columns)}
+                        {this.displayColumn(this.state)}
                     </div>
                 </div>
             </div>

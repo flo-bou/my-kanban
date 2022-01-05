@@ -8,7 +8,8 @@ class Colonne extends React.Component {
         super(props); // ici on récupère les props des parents
         this.addVignetteToState = this.addVignetteToState.bind(this);
         this.displayVignette = this.displayVignette.bind(this);
-        this.state = { titre: this.props.title, vignettes: ['Vignette 1', 'Vignette 2'] }; // initialisation des données state
+        this.updateName = this.updateName.bind(this);
+        this.state = this.props.dataColonne; // array of vignette objects
     }
 
     generateKey(){
@@ -17,24 +18,25 @@ class Colonne extends React.Component {
     }
 
     addVignetteToState() {
-        let temps = this.state.vignettes;
-        temps.push('Une autre vignette');
-        this.setState({ vignettes: temps });
+        // let temps = this.state.vignettes;
+        // temps.push('Une autre vignette');
+        // this.setState({ vignettes: temps });
     }
 
     displayVignette(vignettes){
+        console.log('vignettes : ', vignettes);
         let elems = vignettes.map((value) => {
-            return <Vignette title={value} key={this.generateKey()}></Vignette>;
+            return <Vignette key={this.generateKey()} id={this.generateKey()} dataVignette={value}></Vignette>;
         });
         return elems;
     }
 
     updateName(){
-        // select input elem and read its value prop
-        let newName = document.getElementById(this.props.id + 'Input').value;
-        // send value to this.state
-        this.setState({ titre: newName });
-        console.log(this.state)
+        // // select input elem and read its value prop
+        // let newName = document.getElementById(this.props.id + 'Input').value;
+        // // send value to this.state
+        // this.setState({ titre: newName });
+        // console.log(this.state)
     }
 
     render() {
@@ -42,12 +44,11 @@ class Colonne extends React.Component {
         return (
             <div className='colonne col'>
                 <div className="container border rounded border-secondary">
-                    <div className='row'>
+                    {/* <div className='row'>
                         <input type='text' className='col' id={this.props.id + 'Input'} defaultValue={this.state.titre} onChange={() =>{this.updateName()}} maxLength="40" />
                         <button type='button' onInput={() => {this.props.rmColumn(this.state.titre)}} className='col btn btn-sm rounded  border-secondary' title='Suprimer cette colonne'>&times;</button>
-                    </div>
-                    {this.displayVignette(this.state.vignettes)}
-                    {/* <Vignette></Vignette> */}
+                    </div> */}
+                    {this.displayVignette(this.state)}
                     <div className="row">
                         <button type='button' onClick={() => {this.addVignetteToState()}} className='col btn btn-sm rounded border-secondary' title='Ajouter une vignette'>Ajouter</button>
                     </div>
@@ -56,5 +57,7 @@ class Colonne extends React.Component {
         );
     }
 }
+
+// La position des colonnes et des vignettes corresponds à leur place dans ces arrays seed.
 
 export default Colonne;

@@ -1,5 +1,6 @@
 import './App.css';
 import Tableau from './component/Tableau/Tableau';
+import db from './seed.json'; // array of colonne objects
 
 function App() {
   return (
@@ -10,7 +11,7 @@ function App() {
         </p>
       </header>
       <main className='mb-0'>
-        <Tableau></Tableau>
+        <Tableau dataTableau={db}></Tableau>
       </main>
     </div>
   );
