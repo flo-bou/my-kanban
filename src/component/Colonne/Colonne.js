@@ -1,63 +1,70 @@
 // import './Colonne.css';
-// import ProductList from '../ProductList/ProductList.js';
 import React from 'react';
 import Vignette from '../Vignette/Vignette';
 
 class Colonne extends React.Component {
     constructor(props) {
-        super(props); // ici on récupère les props des parents
-        this.addVignetteToState = this.addVignetteToState.bind(this);
-        this.displayVignette = this.displayVignette.bind(this);
-        this.updateName = this.updateName.bind(this);
-        this.state = this.props.dataColonne; // array of vignette objects
+        super(props);
+        this.getStickerElems = this.getStickerElems.bind(this);
+        this.addStickerToState = this.addStickerToState.bind(this);
+        this.changeColumnName = this.changeColumnName.bind(this);
+        this.state = this.props.dataColonne; // column object
     }
 
     generateKey(){
-        let randomKey = (Math.random() + 1).toString(36).substring(7);
-        return randomKey; // 5 characters string
+        let randomKey = (Math.random() + 1).toString(36).substring(6);
+        return randomKey;
     }
 
-    addVignetteToState() {
-        // let temps = this.state.vignettes;
-        // temps.push('Une autre vignette');
-        // this.setState({ vignettes: temps });
-    }
-
-    displayVignette(vignettes){
-        console.log('vignettes : ', vignettes);
-        let elems = vignettes.map((value) => {
-            return <Vignette key={this.generateKey()} id={this.generateKey()} dataVignette={value}></Vignette>;
-        });
+    getStickerElems(){
+        let stickers = this.state.colContent;
+        // console.log('stickers data in getStickerElems (Colonne component) : ', stickers);
+        let elems = stickers.map((value) => <Vignette key={value.stickerId} rmVignette={this.rmVignetteFromState} dataVignette={value}></Vignette>);
         return elems;
     }
 
-    updateName(){
-        // // select input elem and read its value prop
-        // let newName = document.getElementById(this.props.id + 'Input').value;
-        // // send value to this.state
-        // this.setState({ titre: newName });
-        // console.log(this.state)
+    addStickerToState() {
+        let stickers = this.state.colContent;
+        let newStickerNumber = stickers.length + 1;
+        let newStickerTitle = 'Nouvelle vignette ' + newStickerNumber.toString();
+        let newSticker = { "stickerTitle": newStickerTitle, "stickerDescription": "", "stickerId": this.generateKey(), "stickerOrder": newStickerNumber, "stickerStart": "", "stickerEnd": "", "stickerChecklist": [] };
+        stickers.push(newSticker);
+        // console.log('stickers data in addSticker func (Colonne component) : ', stickers);
+        this.setState({ "colContent": stickers });
     }
 
+    changeColumnName(){
+        // select input elem and read its value prop
+        let newName = document.getElementById(this.state.colId + 'Input').value;
+        this.setState({ "colTitle": newName }, function(){
+            console.log('Column object after changeColumnName (Colonne component) : ', this.state);
+        });
+    }
+
+    // rmSticker(){
+
+    // }
+
     render() {
-        console.log(this.state);
+        let stickers = this.getStickerElems()
+
         return (
             <div className='colonne col'>
                 <div className="container border rounded border-secondary">
-                    {/* <div className='row'>
-                        <input type='text' className='col' id={this.props.id + 'Input'} defaultValue={this.state.titre} onChange={() =>{this.updateName()}} maxLength="40" />
-                        <button type='button' onInput={() => {this.props.rmColumn(this.state.titre)}} className='col btn btn-sm rounded  border-secondary' title='Suprimer cette colonne'>&times;</button>
-                    </div> */}
-                    {this.displayVignette(this.state)}
+                    <div className='row'>
+                        <input type='text' className='col' id={this.state.colId + 'Input'} defaultValue={this.state.colTitle} onChange={() =>{this.changeColumnName()}} maxLength="40" />
+                        <button type='button' onClick={() => {this.props.rmCol(this.state.colId)}} className='col btn btn-sm rounded  border-secondary' title='Suprimer cette colonne'>
+                            &times;
+                        </button>
+                    </div>
+                        {stickers}
                     <div className="row">
-                        <button type='button' onClick={() => {this.addVignetteToState()}} className='col btn btn-sm rounded border-secondary' title='Ajouter une vignette'>Ajouter</button>
+                        <button type='button' onClick={() => {this.addStickerToState()}} className='col btn btn-sm rounded border-secondary' title='Ajouter une vignette'>Ajouter</button>
                     </div>
                 </div>
             </div>
         );
     }
 }
-
-// La position des colonnes et des vignettes corresponds à leur place dans ces arrays seed.
 
 export default Colonne;

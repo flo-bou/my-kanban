@@ -1,17 +1,18 @@
 import './App.css';
 import Tableau from './component/Tableau/Tableau';
-import db from './seed.json'; // array of colonne objects
+import seed from './seed.json'; // array of colonne objects
+const db = seed;
 
 function App() {
   return (
     <div className="App">
       <header className="bg-light">
         <p>
-          Projet kanban.
+          Selectionnez un tableau (bientôt)
         </p>
       </header>
       <main className='mb-0'>
-        <Tableau dataTableau={db}></Tableau>
+        <Tableau dataTableau={db[0]}></Tableau>
       </main>
     </div>
   );
