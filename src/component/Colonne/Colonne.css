@@ -1,0 +1,5 @@
+.colonne{
+    width: 200px !important;
+    max-height: 78vh;
+    overflow-y: scroll;
+}

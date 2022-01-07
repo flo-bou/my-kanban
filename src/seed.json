@@ -2,18 +2,15 @@
     {
         "boardTitle": "My kanban",
         "boardId": "jxwgc3",
-        "boardOrder": 0,
         "boardContent":[
             {
                 "colTitle": "To do",
-                "colId": "8r1f8o",
-                "colOrder": 0,
+                "colId": "8r1jho",
                 "colContent": [
                     {
                         "stickerTitle": "Ajout des dates aux vignettes",
                         "stickerDescription": "Il faut ajouter des dates aux vignettes",
-                        "stickerId": "8r1fd3",
-                        "stickerOrder": 0,
+                        "stickerId": "8r5yv",
                         "stickerStart": "format-date",
                         "stickerEnd": "format-date",
                         "stickerChecklist": [
@@ -30,8 +27,7 @@
                     {
                         "stickerTitle": "Ajout des colonnes",
                         "stickerDescription": "Il faut.",
-                        "stickerId": "sdff89",
-                        "stickerOrder": 1,
+                        "stickerId": "sdko89",
                         "stickerStart": "format-date",
                         "stickerEnd": "format-date",
                         "stickerChecklist": [
@@ -50,13 +46,11 @@
             {
                 "colTitle":"Doing",
                 "colId": "2sdf0d",
-                "colOrder": 1,
                 "colContent": [
                     {
                         "stickerTitle": "Vignette",
                         "stickerDescription": "Il faut ajouter des dates aux vignettes",
                         "stickerId": "094bfd",
-                        "stickerOrder": 0,
                         "stickerStart": "format-date",
                         "stickerEnd": "format-date",
                         "stickerChecklist": [
@@ -74,7 +68,6 @@
                         "stickerTitle": "Vignette 2",
                         "stickerDescription": "Il faut.",
                         "stickerId": "fsdq09",
-                        "stickerOrder": 1,
                         "stickerStart": "format-date",
                         "stickerEnd": "format-date",
                         "stickerChecklist": [

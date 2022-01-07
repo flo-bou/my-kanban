@@ -1,4 +1,4 @@
-// import './Colonne.css';
+import './Colonne.css';
 import React from 'react';
 import Vignette from '../Vignette/Vignette';
 
@@ -7,7 +7,8 @@ class Colonne extends React.Component {
         super(props);
         this.getStickerElems = this.getStickerElems.bind(this);
         this.addStickerToState = this.addStickerToState.bind(this);
-        this.changeColumnName = this.changeColumnName.bind(this);
+        this.changeColumnTitle = this.changeColumnTitle.bind(this);
+        this.rmStickerFromState = this.rmStickerFromState.bind(this);
         this.state = this.props.dataColonne; // column object
     }
 
@@ -19,7 +20,7 @@ class Colonne extends React.Component {
     getStickerElems(){
         let stickers = this.state.colContent;
         // console.log('stickers data in getStickerElems (Colonne component) : ', stickers);
-        let elems = stickers.map((value) => <Vignette key={value.stickerId} rmVignette={this.rmVignetteFromState} dataVignette={value}></Vignette>);
+        let elems = stickers.map((value) => <Vignette key={value.stickerId} id={value.stickerId} rmSticker={this.rmStickerFromState} dataVignette={value}></Vignette>);
         return elems;
     }
 
@@ -33,29 +34,42 @@ class Colonne extends React.Component {
         this.setState({ "colContent": stickers });
     }
 
-    changeColumnName(){
+    changeColumnTitle(){
         // select input elem and read its value prop
-        let newName = document.getElementById(this.state.colId + 'Input').value;
-        this.setState({ "colTitle": newName }, function(){
-            console.log('Column object after changeColumnName (Colonne component) : ', this.state);
+        let newTitle = document.getElementById(this.state.colId + 'Input').value;
+        this.setState({ "colTitle": newTitle }, function(){
+            // console.log('Column object after changeColumnTitle (Colonne component) : ', this.state);
         });
     }
 
-    // rmSticker(){
-
-    // }
+    rmStickerFromState(stickerID) {
+        let stickers = this.state.colContent;
+        let newStickers = stickers.filter((value) => {
+            return value.stickerId!==stickerID;
+        });
+        // console.log('newStickers data in rmStickerFromState func (Colonne component) : ', newStickers);
+        this.setState({ "colContent": newStickers });
+    }
 
     render() {
         let stickers = this.getStickerElems()
 
         return (
-            <div className='colonne col'>
+            <div className='colonne'>
                 <div className="container border rounded border-secondary">
-                    <div className='row'>
-                        <input type='text' className='col' id={this.state.colId + 'Input'} defaultValue={this.state.colTitle} onChange={() =>{this.changeColumnName()}} maxLength="40" />
-                        <button type='button' onClick={() => {this.props.rmCol(this.state.colId)}} className='col btn btn-sm rounded  border-secondary' title='Suprimer cette colonne'>
+                    <div className="row">
+                        <button type='button' onClick={() => {this.props.changeColumnsOrder(this.state.colId, true)}} className='btn text-secondary col' title='Déplacer à gauche'>
+                            🡄
+                        </button>
+                        <button type='button' onClick={() => {this.props.changeColumnsOrder(this.state.colId, false)}} className='btn text-secondary col' title='Déplacer à droite'>
+                            🡆
+                        </button>
+                        <button type='button' onClick={() => {this.props.rmColumn(this.state.colId)}} className='btn rounded bg-light text-secondary border-secondary col' title='Suprimer cette colonne'>
                             &times;
                         </button>
+                    </div>
+                    <div>
+                        <input type='text' className='form-control' id={this.state.colId + 'Input'} defaultValue={this.state.colTitle} onBlur={() =>{this.changeColumnTitle()}} maxLength="40" />
                     </div>
                         {stickers}
                     <div className="row">

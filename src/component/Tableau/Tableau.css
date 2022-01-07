@@ -1,0 +1,10 @@
+.tableau > .container {
+    height: 80vh;
+    overflow-x: scroll;
+}
+
+.tableau > .container > div {
+    display: grid;
+    grid-template-rows: auto;
+    grid-template-columns: auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto;
+}

@@ -1,4 +1,4 @@
-// import './Tableau.css';
+import './Tableau.css';
 import React from 'react';
 import Colonne from '../Colonne/Colonne';
 
@@ -8,6 +8,7 @@ class Tableau extends React.Component {
         this.getColumnElems = this.getColumnElems.bind(this);
         this.addColumnToState = this.addColumnToState.bind(this);
         this.rmColumnFromState = this.rmColumnFromState.bind(this);
+        this.changeColumnsOrder = this.changeColumnsOrder.bind(this);
         this.state = this.props.dataTableau; // board object
     }
 
@@ -19,7 +20,7 @@ class Tableau extends React.Component {
     getColumnElems(){
         let columns = this.state.boardContent;
         // console.log('colonnes data in getColumnElems func (Tableau component) : ', columns);
-        let elems = columns.map((value) => <Colonne key={value.colId} rmCol={this.rmColumnFromState} changeColName={this.changeColumnName} dataColonne={value}></Colonne>);
+        let elems = columns.map((value) => <Colonne key={value.colId} id={value.colId} rmColumn={this.rmColumnFromState} changeColName={this.changeColumnName} changeColumnsOrder={this.changeColumnsOrder} dataColonne={value}></Colonne>);
         return elems;
     }
 
@@ -38,8 +39,26 @@ class Tableau extends React.Component {
         let newColumns = columns.filter((value) => {
             return value.colId!==columnID;
         });
-        console.log('newColumns data in rmColumnFromState func (Tableau component) : ', newColumns);
+        // console.log('newColumns data in rmColumnFromState func (Tableau component) : ', newColumns);
         this.setState({ "boardContent": newColumns });
+    }
+
+    changeColumnsOrder(colId, isLeft){
+        let columns = this.state.boardContent;
+        let oldIndex = columns.findIndex((entry) => {
+            return entry['colId']===colId;
+        })
+        let columnToMove = columns[oldIndex];
+
+        if(isLeft && oldIndex!==0){ // moving to left
+            columns.splice(oldIndex, 1);
+            columns.splice(oldIndex - 1, 0, columnToMove);
+        } else if(!isLeft && columns.length!==oldIndex-1){ // moving to right
+            columns.splice(oldIndex, 1);
+            columns.splice(oldIndex + 1, 0, columnToMove);
+        }
+        this.setState({'boardContent': columns});
+        // je renvoie le nouveau tableau dans state (vais-je perdre des données ? surement : il va falloir faire remonter toutes les données dans tableau)
     }
 
     render() {
@@ -50,10 +69,10 @@ class Tableau extends React.Component {
                 <p>
                     {this.state.boardTitle}
                     &nbsp;
-                    <button type='button' onClick={() => {this.addColumnToState()}} className='btn btn-light rounded border-secondary'>Ajouter une colonne</button>
+                    <button type='button' onClick={() => {this.addColumnToState()}} className='btn btn-light rounded border-secondary float-end'>Ajouter une colonne</button>
                 </p>
                 <div className="container border rounded border-secondary">
-                    <div className="row">
+                    <div>
                         {columns}
                     </div>
                 </div>
