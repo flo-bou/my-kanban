@@ -9,6 +9,7 @@ class Colonne extends React.Component {
         this.addStickerToState = this.addStickerToState.bind(this);
         this.changeColumnTitle = this.changeColumnTitle.bind(this);
         this.rmStickerFromState = this.rmStickerFromState.bind(this);
+        this.changeStickerOrder = this.changeStickerOrder.bind(this);
         this.state = this.props.dataColonne; // column object
     }
 
@@ -20,7 +21,7 @@ class Colonne extends React.Component {
     getStickerElems(){
         let stickers = this.state.colContent;
         // console.log('stickers data in getStickerElems (Colonne component) : ', stickers);
-        let elems = stickers.map((value) => <Vignette key={value.stickerId} id={value.stickerId} rmSticker={this.rmStickerFromState} dataVignette={value}></Vignette>);
+        let elems = stickers.map((value) => <Vignette key={value.stickerId} id={value.stickerId} rmSticker={this.rmStickerFromState} changeStickerOrder={this.changeStickerOrder} dataVignette={value}></Vignette>);
         return elems;
     }
 
@@ -51,6 +52,24 @@ class Colonne extends React.Component {
         this.setState({ "colContent": newStickers });
     }
 
+    changeStickerOrder(stickerId, isUp){
+        let stickers = this.state.colContent;
+        let oldIndex = stickers.findIndex((entry) => {
+            return entry['stickerId']===stickerId;
+        })
+        let stickerToMove = stickers[oldIndex];
+
+        if(isUp && oldIndex!==0){ // moving to left
+            stickers.splice(oldIndex, 1);
+            stickers.splice(oldIndex - 1, 0, stickerToMove);
+        } else if(!isUp && stickers.length!==oldIndex-1){ // moving to right
+            stickers.splice(oldIndex, 1);
+            stickers.splice(oldIndex + 1, 0, stickerToMove);
+        }
+        this.setState({'colContent': stickers});
+        // je renvoie le nouveau tableau dans state (vais-je perdre des données ? surement : il va falloir faire remonter toutes les données dans tableau)
+    }
+
     render() {
         let stickers = this.getStickerElems()
 
@@ -58,22 +77,24 @@ class Colonne extends React.Component {
             <div className='colonne'>
                 <div className="container border rounded border-secondary">
                     <div className="row">
-                        <button type='button' onClick={() => {this.props.changeColumnsOrder(this.state.colId, true)}} className='btn text-secondary col' title='Déplacer à gauche'>
-                            🡄
+                        <button type='button' onClick={() => {this.props.changeColumnsOrder(this.state.colId, true)}} className='btn btn-sm btn-outline-secondary border-0 col-5' title='Déplacer à gauche'>
+                            ◁
                         </button>
-                        <button type='button' onClick={() => {this.props.changeColumnsOrder(this.state.colId, false)}} className='btn text-secondary col' title='Déplacer à droite'>
-                            🡆
+                        <button type='button' onClick={() => {this.props.changeColumnsOrder(this.state.colId, false)}} className='btn btn-sm btn-outline-secondary border-0 col-5' title='Déplacer à droite'>
+                            ▷
                         </button>
-                        <button type='button' onClick={() => {this.props.rmColumn(this.state.colId)}} className='btn rounded bg-light text-secondary border-secondary col' title='Suprimer cette colonne'>
+                        <button type='button' onClick={() => {this.props.rmColumn(this.state.colId)}} className='btn btn-sm btn-outline-dark col-2' title='Suprimer cette colonne'>
                             &times;
                         </button>
                     </div>
                     <div>
                         <input type='text' className='form-control' id={this.state.colId + 'Input'} defaultValue={this.state.colTitle} onBlur={() =>{this.changeColumnTitle()}} maxLength="40" />
                     </div>
-                        {stickers}
+
+                    {stickers}
+
                     <div className="row">
-                        <button type='button' onClick={() => {this.addStickerToState()}} className='col btn btn-sm rounded border-secondary' title='Ajouter une vignette'>Ajouter</button>
+                        <button type='button' onClick={() => {this.addStickerToState()}} className='col btn btn-sm btn-outline-secondary' title='Ajouter une vignette'>Ajouter</button>
                     </div>
                 </div>
             </div>

@@ -69,7 +69,7 @@ class Tableau extends React.Component {
                 <p>
                     {this.state.boardTitle}
                     &nbsp;
-                    <button type='button' onClick={() => {this.addColumnToState()}} className='btn btn-light rounded border-secondary float-end'>Ajouter une colonne</button>
+                    <button type='button' onClick={() => {this.addColumnToState()}} className='btn btn-outline-secondary btn-light float-end'>Ajouter une colonne</button>
                 </p>
                 <div className="container border rounded border-secondary">
                     <div>

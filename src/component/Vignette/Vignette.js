@@ -28,9 +28,15 @@ class Vignette extends React.Component {
     render() {
         return (
             <div className="row">
-                <button className='vignette btn btn-light col gy-1' type='button' data-bs-toggle="modal" data-bs-target={'#' + this.state.stickerId + 'Modal'}>
-                    {this.state.stickerTitle}
-                </button>
+                <div className="input-group">
+                    <button className='vignette btn btn-light col gy-1' type='button' data-bs-toggle="modal" data-bs-target={'#' + this.state.stickerId + 'Modal'}>
+                        {this.state.stickerTitle}
+                    </button>
+                    <span className="d-grid">
+                        <button type="button" className="btn btn-sm btn-outline-secondary border-0" onClick={ () => {this.props.changeStickerOrder(this.state.stickerId, true)} }>△</button>
+                        <button type="button" className="btn btn-sm btn-outline-secondary border-0" onClick={ () => {this.props.changeStickerOrder(this.state.stickerId, false)} }>▽</button>
+                    </span>
+                </div>
 
                 {/* Modal */}
                 <div className="modal fade" id={this.state.stickerId + 'Modal'} aria-labelledby={this.state.stickerId + 'Modal'} aria-hidden="true">
@@ -52,10 +58,10 @@ class Vignette extends React.Component {
                             </div>
 
                             <div className="modal-footer">
-                                <button type="button" className="btn btn-danger float-start" onClick={() => {this.props.rmSticker(this.state.stickerId)}} data-bs-dismiss="modal">
+                                <button type="button" className="btn btn-sm btn-outline-danger" onClick={() => {this.props.rmSticker(this.state.stickerId)}} data-bs-dismiss="modal">
                                     Delete
                                 </button>
-                                <button type="button" className="btn btn-primary" data-bs-dismiss="modal">
+                                <button type="button" className="btn btn-sm btn-outline-secondary" data-bs-dismiss="modal">
                                     Close
                                 </button>
                             </div>
