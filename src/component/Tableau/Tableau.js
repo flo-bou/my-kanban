@@ -13,14 +13,23 @@ class Tableau extends React.Component {
     }
 
     generateKey(){
-        let randomKey = (Math.random() + 1).toString(36).substring(6);
+        let randomKey = 'ID' + (Math.random() + 1).toString(36).substring(6);
         return randomKey;
     }
 
     getColumnElems(){
         let columns = this.state.boardContent;
         // console.log('colonnes data in getColumnElems func (Tableau component) : ', columns);
-        let elems = columns.map((value) => <Colonne key={value.colId} id={value.colId} rmColumn={this.rmColumnFromState} changeColName={this.changeColumnName} changeColumnsOrder={this.changeColumnsOrder} dataColonne={value}></Colonne>);
+        let elems = columns.map((value) => 
+            <Colonne 
+                key={value.colId} 
+                id={value.colId} 
+                rmColumn={this.rmColumnFromState} 
+                changeColName={this.changeColumnName} 
+                changeColumnsOrder={this.changeColumnsOrder} 
+                dataColonne={value}>
+            </Colonne>
+        );
         return elems;
     }
 

@@ -1,43 +1,47 @@
 [
     {
         "boardTitle": "My kanban",
-        "boardId": "jxwgc3",
+        "boardId": "IDjxwgc3",
         "boardContent":[
             {
                 "colTitle": "To do",
-                "colId": "8r1jho",
+                "colId": "ID8r1jho",
                 "colContent": [
                     {
                         "stickerTitle": "Ajout des dates aux vignettes",
                         "stickerDescription": "Il faut ajouter des dates aux vignettes",
-                        "stickerId": "8r5yv",
-                        "stickerStart": "format-date",
+                        "stickerId": "IDpr5yv",
+                        "stickerTag": "myTag",
                         "stickerEnd": "format-date",
                         "stickerChecklist": [
                             {
-                                "ClistName": "Element 1",
-                                "ClistChecked": true
+                                "checklistName": "Element 1",
+                                "checklistId": "IDcxln",
+                                "checklistChecked": true
                             },
                             {
-                                "ClistName": "Element 2",
-                                "ClistChecked": false
+                                "checklistName": "Element 2",
+                                "checklistId": "IDcfg67",
+                                "checklistChecked": false
                             }
                         ]
                     },
                     {
                         "stickerTitle": "Ajout des colonnes",
                         "stickerDescription": "Il faut.",
-                        "stickerId": "sdko89",
-                        "stickerStart": "format-date",
+                        "stickerId": "IDsdko89",
+                        "stickerTag": "myTag",
                         "stickerEnd": "format-date",
                         "stickerChecklist": [
                             {
-                                "ClistName": "Element 1",
-                                "ClistChecked": true
+                                "checklistName": "Element 1",
+                                "checklistId": "ID39f4",
+                                "checklistChecked": true
                             },
                             {
-                                "ClistName": "Element 2",
-                                "ClistChecked": false
+                                "checklistName": "Element 2",
+                                "checklistId": "ID9dfd9",
+                                "checklistChecked": false
                             }
                         ]
                     }
@@ -45,39 +49,43 @@
             },
             {
                 "colTitle":"Doing",
-                "colId": "2sdf0d",
+                "colId": "ID2sdf0d",
                 "colContent": [
                     {
                         "stickerTitle": "Vignette",
                         "stickerDescription": "Il faut ajouter des dates aux vignettes",
-                        "stickerId": "094bfd",
-                        "stickerStart": "format-date",
+                        "stickerId": "IDp94bfd",
+                        "stickerTag": "myTag",
                         "stickerEnd": "format-date",
                         "stickerChecklist": [
                             {
-                                "ClistName": "Element 1",
-                                "ClistChecked": true
+                                "checklistName": "Element 1",
+                                "checklistId": "ID329fd",
+                                "checklistChecked": true
                             },
                             {
-                                "ClistName": "Element 2",
-                                "ClistChecked": false
+                                "checklistName": "Element 2",
+                                "checklistId": "IDc8h82",
+                                "checklistChecked": false
                             }
                         ]
                     },
                     {
                         "stickerTitle": "Vignette 2",
                         "stickerDescription": "Il faut.",
-                        "stickerId": "fsdq09",
-                        "stickerStart": "format-date",
+                        "stickerId": "IDfsdq09",
+                        "stickerTag": "myTag",
                         "stickerEnd": "format-date",
                         "stickerChecklist": [
                             {
-                                "ClistName": "Element 1",
-                                "ClistChecked": true
+                                "checklistName": "Element 1",
+                                "checklistId": "ID9dbds7",
+                                "checklistChecked": true
                             },
                             {
-                                "ClistName": "Element 2",
-                                "ClistChecked": false
+                                "checklistName": "Element 2",
+                                "checklistId": "ID18bs6",
+                                "checklistChecked": false
                             }
                         ]
                     }

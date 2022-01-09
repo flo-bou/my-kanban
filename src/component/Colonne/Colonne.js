@@ -14,21 +14,29 @@ class Colonne extends React.Component {
     }
 
     generateKey(){
-        let randomKey = (Math.random() + 1).toString(36).substring(6);
+        let randomKey = 'ID' + (Math.random() + 1).toString(36).substring(6);
         return randomKey;
     }
 
     getStickerElems(){
         let stickers = this.state.colContent;
         // console.log('stickers data in getStickerElems (Colonne component) : ', stickers);
-        let elems = stickers.map((value) => <Vignette key={value.stickerId} id={value.stickerId} rmSticker={this.rmStickerFromState} changeStickerOrder={this.changeStickerOrder} dataVignette={value}></Vignette>);
+        let elems = stickers.map((value) =>
+            <Vignette
+                key={value.stickerId}
+                id={value.stickerId}
+                rmSticker={this.rmStickerFromState}
+                changeStickerOrder={this.changeStickerOrder}
+                dataVignette={value}>
+            </Vignette>
+        );
         return elems;
     }
 
     addStickerToState() {
         let stickers = this.state.colContent;
         let newStickerNumber = stickers.length + 1;
-        let newStickerTitle = 'Nouvelle vignette ' + newStickerNumber.toString();
+        let newStickerTitle = 'Vignette ' + newStickerNumber.toString();
         let newSticker = { "stickerTitle": newStickerTitle, "stickerDescription": "", "stickerId": this.generateKey(), "stickerOrder": newStickerNumber, "stickerStart": "", "stickerEnd": "", "stickerChecklist": [] };
         stickers.push(newSticker);
         // console.log('stickers data in addSticker func (Colonne component) : ', stickers);
