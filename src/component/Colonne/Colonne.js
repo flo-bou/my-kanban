@@ -24,7 +24,6 @@ class Colonne extends React.Component {
         let elems = stickers.map((value) =>
             <Vignette
                 key={value.stickerId}
-                id={value.stickerId}
                 rmSticker={this.rmStickerFromState}
                 changeStickerOrder={this.changeStickerOrder}
                 dataVignette={value}>
@@ -37,7 +36,7 @@ class Colonne extends React.Component {
         let stickers = this.state.colContent;
         let newStickerNumber = stickers.length + 1;
         let newStickerTitle = 'Vignette ' + newStickerNumber.toString();
-        let newSticker = { "stickerTitle": newStickerTitle, "stickerDescription": "", "stickerId": this.generateKey(), "stickerOrder": newStickerNumber, "stickerStart": "", "stickerEnd": "", "stickerChecklist": [] };
+        let newSticker = { "stickerTitle": newStickerTitle, "stickerDescription": "", "stickerId": this.generateKey(), "stickerOrder": newStickerNumber, "stickerTag": "", "stickerEndDate": "", "stickerChecklist": [] };
         stickers.push(newSticker);
         // console.log('stickers data in addSticker func (Colonne component) : ', stickers);
         this.setState({ "colContent": stickers });
@@ -79,12 +78,10 @@ class Colonne extends React.Component {
     }
 
     render() {
-        let stickers = this.getStickerElems()
-
         return (
             <div className='colonne'>
                 <div className="container border rounded border-secondary">
-                    <div className="row">
+                    <div className="row mb-1">
                         <button type='button' onClick={() => {this.props.changeColumnsOrder(this.state.colId, true)}} className='btn btn-sm btn-outline-secondary border-0 col-5' title='Déplacer à gauche'>
                             ◁
                         </button>
@@ -95,11 +92,11 @@ class Colonne extends React.Component {
                             &times;
                         </button>
                     </div>
-                    <div>
-                        <input type='text' className='form-control' id={this.state.colId + 'Input'} defaultValue={this.state.colTitle} onBlur={() =>{this.changeColumnTitle()}} maxLength="40" />
+                    <div className="row mb-1">
+                        <input type='text' className='form-control border-0' id={this.state.colId + 'Input'} defaultValue={this.state.colTitle} onBlur={() =>{this.changeColumnTitle()}} maxLength="40" />
                     </div>
 
-                    {stickers}
+                    {this.getStickerElems()}
 
                     <div className="row">
                         <button type='button' onClick={() => {this.addStickerToState()}} className='col btn btn-sm btn-outline-secondary' title='Ajouter une vignette'>Ajouter</button>

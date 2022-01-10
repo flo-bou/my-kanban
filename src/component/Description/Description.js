@@ -1,7 +1,6 @@
-// import './VignetteModalDescription.css';
 import React from 'react';
 
-class VignetteModalDescription extends React.Component {
+class Description extends React.Component {
     constructor(props) {
         super(props);
         this.changeStickerDescription = this.changeStickerDescription.bind(this);
@@ -22,7 +21,7 @@ class VignetteModalDescription extends React.Component {
     toggleVisibility(){
         document.getElementById('DescBtn' + this.props.vignetteID).classList.toggle('hide');
         document.getElementById('Desc' + this.props.vignetteID).classList.toggle('hide');
-        // ajouter focus auto sur le textarea
+        // ajouter focus auto sur le textarea ?
     }
 
     deleteDescription(){
@@ -40,18 +39,30 @@ class VignetteModalDescription extends React.Component {
             <div className="vignetteModalDescription container-fluid my-4">
                 <div className={hideWhenDescNotEmpty} id={'DescBtn' + this.props.vignetteID}>
                     <div className="row">
-                        <button type="button" className='btn btn-sm btn-outline-secondary border-0' onClick={() => {this.toggleVisibility()} }> Ajouter une description. </button>
+                        <button type="button" className='btn btn-sm btn-outline-secondary border-0' onClick={() => {this.toggleVisibility()} }>
+                            Ajouter une description.
+                        </button>
                     </div>
                 </div>
                 <div className={hideWhenDescEmpty}  id={'Desc' + this.props.vignetteID}>
                     <label htmlFor={this.props.vignetteID} className="form-label">
                         Description
                     </label>
-                    <textarea className="form-control" id={this.props.vignetteID + 'Description'} defaultValue={this.state.stickerDescription} onBlur={() =>{this.changeStickerDescription()}} rows="3"></textarea>
-                    <div className="row my-3">
-                        <div className="col text-end">
-                            <button type="button" className='btn btn-sm btn-outline-danger' onClick={() => {this.deleteDescription()} }> Del </button>
-                        </div>
+                    <textarea 
+                        className="form-control" 
+                        id={this.props.vignetteID + 'Description'} 
+                        defaultValue={this.state.stickerDescription} 
+                        onBlur={() =>{this.changeStickerDescription()}} 
+                        rows="3"
+                    ></textarea>
+                    <div className="my-3 text-end">
+                        <button 
+                            type="button" 
+                            className='btn btn-sm btn-outline-danger'
+                            onClick={() => {this.deleteDescription()} }
+                        >
+                            Del
+                        </button>
                     </div>
                 </div>
             </div>
@@ -61,4 +72,4 @@ class VignetteModalDescription extends React.Component {
 
 // Cette partie du modal est toujours dans la page, quel que soit le context, il est simplement affiché ou pas.
 
-export default VignetteModalDescription;
+export default Description;

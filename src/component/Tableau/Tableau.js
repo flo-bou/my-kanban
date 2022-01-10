@@ -17,16 +17,20 @@ class Tableau extends React.Component {
         return randomKey;
     }
 
+    changeBoardTitle(){
+        let newTitle = document.getElementById(this.state.boardId + 'Input').value;
+        // this.setState({ "boardTitle": newTitle });
+        this.props.sendUpdate( this.state.boardId, "boardTitle", newTitle );
+    }
+
     getColumnElems(){
         let columns = this.state.boardContent;
-        // console.log('colonnes data in getColumnElems func (Tableau component) : ', columns);
-        let elems = columns.map((value) => 
-            <Colonne 
-                key={value.colId} 
-                id={value.colId} 
-                rmColumn={this.rmColumnFromState} 
-                changeColName={this.changeColumnName} 
-                changeColumnsOrder={this.changeColumnsOrder} 
+        let elems = columns.map((value) =>
+            <Colonne
+                key={value.colId}
+                rmColumn={this.rmColumnFromState}
+                changeColName={this.changeColumnName}
+                changeColumnsOrder={this.changeColumnsOrder}
                 dataColonne={value}>
             </Colonne>
         );
@@ -39,7 +43,6 @@ class Tableau extends React.Component {
         let newColumnTitle = 'Colonne ' + newColumnNumber.toString();
         let newColumn = {"colTitle": newColumnTitle, "colId": this.generateKey(), "colOrder": newColumnNumber, "colContent": []};
         columns.push(newColumn);
-        // console.log('colonnes data in addColumn func (Tableau component) : ', columns);
         this.setState({"boardContent": columns});
     }
 
@@ -48,7 +51,6 @@ class Tableau extends React.Component {
         let newColumns = columns.filter((value) => {
             return value.colId!==columnID;
         });
-        // console.log('newColumns data in rmColumnFromState func (Tableau component) : ', newColumns);
         this.setState({ "boardContent": newColumns });
     }
 
@@ -67,22 +69,46 @@ class Tableau extends React.Component {
             columns.splice(oldIndex + 1, 0, columnToMove);
         }
         this.setState({'boardContent': columns});
-        // je renvoie le nouveau tableau dans state (vais-je perdre des données ? surement : il va falloir faire remonter toutes les données dans tableau)
     }
 
     render() {
-        let columns = this.getColumnElems();
-
         return (
-            <div className='tableau'>
-                <p>
-                    {this.state.boardTitle}
-                    &nbsp;
-                    <button type='button' onClick={() => {this.addColumnToState()}} className='btn btn-outline-secondary btn-light float-end'>Ajouter une colonne</button>
-                </p>
-                <div className="container border rounded border-secondary">
+            <div className={'tableau tab-pane fade ' + ( this.props.isFirst ? "show active" : "")} id={this.state.boardId}  role="tabpanel">
+                <div className='my-3 container'>
+                    <input
+                        type='text'
+                        className='form-control border-0'
+                        id={this.state.boardId + 'Input'}
+                        defaultValue={this.state.boardTitle}
+                        onBlur={ () => this.changeBoardTitle() }
+                        maxLength="40"
+                    />
+                </div>
+                <div className="target container border rounded border-secondary my-4">
                     <div>
-                        {columns}
+                        {this.getColumnElems()}
+                    </div>
+                </div>
+                <div className="container my-4">
+                    <div className="row">
+                        <div className="col-6 p-0">
+                            <button
+                                type='button'
+                                onClick={ () => this.props.rmTableau(this.state.boardId) }
+                                className="btn btn-outline-danger"
+                            >
+                                Delete board
+                            </button>
+                        </div>
+                        <div className="col-6 p-0 text-end">
+                            <button
+                                type='button'
+                                onClick={ () => this.addColumnToState() }
+                                className='btn btn-outline-secondary'
+                            >
+                                Ajouter une colonne
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -12,7 +12,7 @@
                         "stickerDescription": "Il faut ajouter des dates aux vignettes",
                         "stickerId": "IDpr5yv",
                         "stickerTag": "myTag",
-                        "stickerEnd": "format-date",
+                        "stickerEndDate": "2022-01-04",
                         "stickerChecklist": [
                             {
                                 "checklistName": "Element 1",
@@ -31,7 +31,7 @@
                         "stickerDescription": "Il faut.",
                         "stickerId": "IDsdko89",
                         "stickerTag": "myTag",
-                        "stickerEnd": "format-date",
+                        "stickerEndDate": "2022-01-05",
                         "stickerChecklist": [
                             {
                                 "checklistName": "Element 1",
@@ -56,7 +56,7 @@
                         "stickerDescription": "Il faut ajouter des dates aux vignettes",
                         "stickerId": "IDp94bfd",
                         "stickerTag": "myTag",
-                        "stickerEnd": "format-date",
+                        "stickerEndDate": "2022-01-06",
                         "stickerChecklist": [
                             {
                                 "checklistName": "Element 1",
@@ -75,7 +75,7 @@
                         "stickerDescription": "Il faut.",
                         "stickerId": "IDfsdq09",
                         "stickerTag": "myTag",
-                        "stickerEnd": "format-date",
+                        "stickerEndDate": "",
                         "stickerChecklist": [
                             {
                                 "checklistName": "Element 1",
@@ -85,6 +85,100 @@
                             {
                                 "checklistName": "Element 2",
                                 "checklistId": "ID18bs6",
+                                "checklistChecked": false
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "boardTitle": "Mon 2eme tableau",
+        "boardId": "IDjfdgc3",
+        "boardContent":[
+            {
+                "colTitle": "To do 2",
+                "colId": "IDe23ho",
+                "colContent": [
+                    {
+                        "stickerTitle": "Ajout des dates aux vignettes",
+                        "stickerDescription": "Il faut ajouter des dates aux vignettes",
+                        "stickerId": "IDe66vv",
+                        "stickerTag": "myTag",
+                        "stickerEndDate": "2022-01-04",
+                        "stickerChecklist": [
+                            {
+                                "checklistName": "Element 1",
+                                "checklistId": "IDv5vln",
+                                "checklistChecked": true
+                            },
+                            {
+                                "checklistName": "Element 2",
+                                "checklistId": "IDv325v7",
+                                "checklistChecked": false
+                            }
+                        ]
+                    },
+                    {
+                        "stickerTitle": "Ajout des colonnes",
+                        "stickerDescription": "Il faut.",
+                        "stickerId": "IDn6ure",
+                        "stickerTag": "myTag",
+                        "stickerEndDate": "2022-01-05",
+                        "stickerChecklist": [
+                            {
+                                "checklistName": "Element 1",
+                                "checklistId": "IDjn86",
+                                "checklistChecked": true
+                            },
+                            {
+                                "checklistName": "Element 2",
+                                "checklistId": "IDv3qe",
+                                "checklistChecked": false
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "colTitle":"Doing 2",
+                "colId": "IDfbqer4",
+                "colContent": [
+                    {
+                        "stickerTitle": "Vignette",
+                        "stickerDescription": "Il faut ajouter des dates aux vignettes",
+                        "stickerId": "ID0mi76f",
+                        "stickerTag": "myTag",
+                        "stickerEndDate": "2022-01-06",
+                        "stickerChecklist": [
+                            {
+                                "checklistName": "Element 1",
+                                "checklistId": "IDds3v57",
+                                "checklistChecked": true
+                            },
+                            {
+                                "checklistName": "Element 2",
+                                "checklistId": "IDfdn74v",
+                                "checklistChecked": false
+                            }
+                        ]
+                    },
+                    {
+                        "stickerTitle": "Vignette 2",
+                        "stickerDescription": "Il faut.",
+                        "stickerId": "ID4y53f",
+                        "stickerTag": "myTag",
+                        "stickerEndDate": "",
+                        "stickerChecklist": [
+                            {
+                                "checklistName": "Element 1",
+                                "checklistId": "ID3vv3v",
+                                "checklistChecked": true
+                            },
+                            {
+                                "checklistName": "Element 2",
+                                "checklistId": "ID9fdnf",
                                 "checklistChecked": false
                             }
                         ]

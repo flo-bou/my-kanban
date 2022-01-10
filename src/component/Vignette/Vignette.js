@@ -18,7 +18,7 @@ class Vignette extends React.Component {
 
     render() {
         return (
-            <div className="row">
+            <div className="row my-1">
                 <div className="input-group">
                     <button className='vignette btn btn-light col gy-1' type='button' data-bs-toggle="modal" data-bs-target={'#' + this.state.stickerId + 'Modal'}>
                         {this.state.stickerTitle}
@@ -29,8 +29,11 @@ class Vignette extends React.Component {
                     </span>
                 </div>
 
-                {/* Modal */}
-                <VignetteModal dataVignette={this.state} rmSticker={this.props.rmSticker} updateVignetteState={this.updateVignetteState}></VignetteModal>
+                <VignetteModal
+                    dataVignette={this.state}
+                    rmSticker={this.props.rmSticker}
+                    updateVignetteState={this.updateVignetteState}>
+                </VignetteModal>
             </div>
         );
     }

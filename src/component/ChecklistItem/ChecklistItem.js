@@ -1,4 +1,3 @@
-import './ChecklistItem.css';
 import React from 'react';
 
 class ChecklistItem extends React.Component {
@@ -7,7 +6,7 @@ class ChecklistItem extends React.Component {
         this.changeItemName = this.changeItemName.bind(this);
         this.changeState = this.changeState.bind(this);
         this.state = this.props.stickerChecklist;
-        // stickerChecklist is an array of objects with 2 properties :
+        // stickerChecklist is an array of objects with 3 properties :
         // "ChecklistName": string,
         // ChecklistId: string
         // "ChecklistChecked": bool
@@ -26,7 +25,7 @@ class ChecklistItem extends React.Component {
     render() {
         return (
             <div className="input-group my-1">
-                <div class="input-group-text">
+                <div className="input-group-text">
                     <input
                         type="checkbox"
                         className="form-check-input mt-0" 

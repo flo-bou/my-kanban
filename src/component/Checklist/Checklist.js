@@ -1,22 +1,19 @@
-import './VignetteModalCheckliste.css';
 import ChecklistItem from '../ChecklistItem/ChecklistItem';
 import React from 'react';
 
-class VignetteModalCheckliste extends React.Component {
+class Checklist extends React.Component {
     constructor(props) {
         super(props);
-        // this.changeChecklistName = this.changeChecklistName.bind(this);
         this.toggleVisibility = this.toggleVisibility.bind(this);
         this.deleteChecklist = this.deleteChecklist.bind(this);
         this.getChecklistItemElems = this.getChecklistItemElems.bind(this);
         this.addChecklistItemToState = this.addChecklistItemToState.bind(this);
         this.rmChecklistItem = this.rmChecklistItem.bind(this);
         this.state = { stickerChecklist: this.props.stickerChecklist };
-
-        // stickerChecklist is an array of objects with 2 properties :
-        // "checklistName": "Element 1",
-        // checklistId
-        // "checklistChecked": true
+        // stickerChecklist is an array of objects with 3 properties :
+        // checklistName: string,
+        // checklistId: string
+        // checklistChecked: bool
     }
 
     toggleVisibility(){
@@ -62,12 +59,11 @@ class VignetteModalCheckliste extends React.Component {
         this.setState({"stickerChecklist": checklistItems});
     }
 
-    rmChecklistItem(checklistItemID) { //il faut créer des id pour chaque item
+    rmChecklistItem(checklistItemID) {
         let checklistItems = this.state.stickerChecklist;
         let newChecklistItems = checklistItems.filter((value) => {
             return value.checklistId!==checklistItemID;
         });
-        // console.log('newChecklists data in rmChecklistFromState func (Tableau component) : ', newChecklists);
         this.setState({ "stickerChecklist": newChecklistItems });
     }
 
@@ -87,9 +83,8 @@ class VignetteModalCheckliste extends React.Component {
                         Check-list
                     </label>
 
-                        {this.getChecklistItemElems()}
+                    {this.getChecklistItemElems()}
 
-                    {/* <br /> */}
                     <div className="row my-3">
                         <div className="col">
                             <button type="button" className='btn btn-sm btn-outline-secondary' onClick={ () => {this.addChecklistItemToState()} }>
@@ -109,6 +104,6 @@ class VignetteModalCheckliste extends React.Component {
     }
 }
 
-// Cette partie du modal est toujours dans la page, quel que soit le context, il est simplement affiché ou pas.
+// Cette partie du modal est toujours dans la page, quel que soit le context, elle est simplement affiché ou pas.
 
-export default VignetteModalCheckliste;
+export default Checklist;

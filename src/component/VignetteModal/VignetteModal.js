@@ -1,6 +1,7 @@
-import './VignetteModal.css';
-import VignetteModalDescription from '../VignetteModalDescription/VignetteModalDescription.js'
-import VignetteModalCheckliste from '../VignetteModalCheckliste/VignetteModalCheckliste.js'
+// import './VignetteModal.css';
+import Description from '../Description/Description.js'
+import Checklist from '../Checklist/Checklist.js'
+import EndDate from '../EndDate/EndDate.js'
 import React from 'react';
 
 class VignetteModal extends React.Component {
@@ -21,26 +22,7 @@ class VignetteModal extends React.Component {
         let newTitle = document.getElementById(this.state.stickerId + 'Title').value;
         this.setState({ "stickerTitle": newTitle });
         this.props.updateVignetteState("stickerTitle", newTitle);
-        // this.setState({ "stickerTitle": newTitle }, function(){
-        //     // console.log('Sticker object after changeStickerTitle (Sticker component) : ', this.state);
-        // });
     }
-
-    // displayStickerDescription(isClicked){
-    //     let elem = [];
-    //     if(this.state.stickerDescription  && !isClicked) { // tester si des données state && pas de clic
-    //         elem = <VignetteModalDescription vignetteDescription={this.state.stickerDescription} vignetteID={this.state.stickerId}></VignetteModalDescription>;
-    //     }else if(!this.state.stickerDescription && isClicked) { // tester si il n'y a pas de données state && il y a eu clic
-    //         elem = <VignetteModalDescription vignetteDescription=" My description" vignetteID={this.state.stickerId}></VignetteModalDescription>;
-    //     }
-    //     // pour refaire un rendu, il faut appeler setState
-    //     // appel à set state quand cést cliqué, faire un test
-    //     this.setState({descriptionElem: elem})
-    // }
-
-    // displayDescription(){
-    //     let isDisplayable = (!this.state.stickerDescription || )
-    // }
 
     updateVignetteModalState(stickerPropertyName, value){
         this.setState({ [stickerPropertyName]: value })
@@ -67,16 +49,21 @@ class VignetteModal extends React.Component {
                         </div>
 
                         <div className="modal-body">
-                            <VignetteModalDescription 
-                                vignetteDescription={this.state.stickerDescription} 
-                                vignetteID={this.state.stickerId} 
+                            <EndDate
+                                stickerEndDate={this.state.stickerEndDate}
+                                vignetteID={this.state.stickerId}
                                 updateVignetteModalState={this.updateVignetteModalState}>
-                            </VignetteModalDescription>
-                            <VignetteModalCheckliste
+                            </EndDate>
+                            <Description
+                                vignetteDescription={this.state.stickerDescription}
+                                vignetteID={this.state.stickerId}
+                                updateVignetteModalState={this.updateVignetteModalState}>
+                            </Description>
+                            <Checklist
                                 stickerChecklist={this.state.stickerChecklist}
                                 vignetteID={this.state.stickerId}
                                 updateVignetteModalState={this.updateVignetteModalState}>
-                            </VignetteModalCheckliste>
+                            </Checklist>
                         </div>
 
                         {/* <div className="modal-footer">

@@ -1,9 +1,9 @@
-.tableau > .container {
+.tableau > .target {
     height: 80vh;
     overflow-x: scroll;
 }
 
-.tableau > .container > div {
+.tableau > .target > div {
     display: grid;
     grid-template-rows: auto;
     grid-template-columns: auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto;
