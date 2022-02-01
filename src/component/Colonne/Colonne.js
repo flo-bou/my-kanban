@@ -93,13 +93,13 @@ class Colonne extends React.Component {
                         </button>
                     </div>
                     <div className="row mb-1">
-                        <input type='text' className='form-control border-0' id={this.state.colId + 'Input'} defaultValue={this.state.colTitle} onBlur={() =>{this.changeColumnTitle()}} maxLength="40" />
+                        <input type='text' className='form-control border-0 fs-5' id={this.state.colId + 'Input'} defaultValue={this.state.colTitle} onBlur={() =>{this.changeColumnTitle()}} maxLength="40" />
                     </div>
 
                     {this.getStickerElems()}
 
                     <div className="row">
-                        <button type='button' onClick={() => {this.addStickerToState()}} className='col btn btn-sm btn-outline-secondary' title='Ajouter une vignette'>Ajouter</button>
+                        <button type='button' onClick={() => {this.addStickerToState()}} className='col btn btn-sm btn-outline-secondary border-0' title='Ajouter une vignette'>Add a sticker</button>
                     </div>
                 </div>
             </div>

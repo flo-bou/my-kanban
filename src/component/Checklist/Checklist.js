@@ -75,25 +75,25 @@ class Checklist extends React.Component {
             <div className="vignetteModalChecklist container-fluid my-4">
                 <div className={hideWhenClNotEmpty} id={'ClBtn' + this.props.vignetteID}>
                     <div className="row">
-                        <button type="button" className='btn btn-sm btn-outline-secondary border-0' onClick={() => {this.toggleVisibility()} }> Ajouter une check-list. </button>
+                        <button type="button" className='btn btn-sm btn-outline-secondary border-0' onClick={() => {this.toggleVisibility()} }> Add a checklist. </button>
                     </div>
                 </div>
                 <div className={hideWhenClEmpty} id={'Checklist' + this.props.vignetteID}>
                     <label htmlFor={this.props.vignetteID} className="form-label">
-                        Check-list
+                        Checklist
                     </label>
 
                     {this.getChecklistItemElems()}
 
                     <div className="row my-3">
                         <div className="col">
-                            <button type="button" className='btn btn-sm btn-outline-secondary' onClick={ () => {this.addChecklistItemToState()} }>
-                                Ajouter une tâche
+                            <button type="button" className='btn btn-sm btn-outline-secondary border-0' onClick={ () => {this.addChecklistItemToState()} }>
+                                Add a task
                             </button>
                         </div>
                         <div className="col text-end">
-                            <button type="button" className='btn btn-sm btn-outline-danger me-0 ms-auto' onClick={ () => {this.deleteChecklist()} }>
-                                Del
+                            <button type="button" className='btn btn-sm btn-outline-danger me-0 ms-auto border-0' onClick={ () => {this.deleteChecklist()} }>
+                                Delete
                             </button>
                         </div>
                     </div>

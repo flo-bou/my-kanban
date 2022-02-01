@@ -108,9 +108,9 @@ class App extends React.Component {
 
 				</main>
 				<footer className='mt-5 bg-light p-3 text-center'>
-					A project by <a href="https://github.com/flo-bou">flo-bou</a>.
+					A project by <a href="http://www.florent-b.fr/">Florent B</a>.
 					<br />
-					Repo on <a href="https://github.com/flo-bou/my-kanban">GitHub</a>.
+					Code & infos on <a href="https://github.com/flo-bou/my-kanban">GitHub</a>.
 				</footer>
 			</div>
 		);

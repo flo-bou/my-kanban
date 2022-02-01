@@ -1,6 +1,12 @@
-# My Kanban !
+# My Kanban!
+
+## Description
 
 My Kanban is a practical exercise about using ReactJs.
+
+## Demo
+
+Live demo is available [here](https://flo-bou.github.io/my-kanban/)!
 
 ## Run
 

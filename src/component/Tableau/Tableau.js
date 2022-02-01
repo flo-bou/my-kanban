@@ -40,7 +40,7 @@ class Tableau extends React.Component {
     addColumnToState() {
         let columns = this.state.boardContent;
         let newColumnNumber = columns.length + 1;
-        let newColumnTitle = 'Colonne ' + newColumnNumber.toString();
+        let newColumnTitle = 'Column ' + newColumnNumber.toString();
         let newColumn = {"colTitle": newColumnTitle, "colId": this.generateKey(), "colOrder": newColumnNumber, "colContent": []};
         columns.push(newColumn);
         this.setState({"boardContent": columns});
@@ -77,7 +77,7 @@ class Tableau extends React.Component {
                 <div className='my-3 container'>
                     <input
                         type='text'
-                        className='form-control border-0'
+                        className='form-control border-0 fs-4'
                         id={this.state.boardId + 'Input'}
                         defaultValue={this.state.boardTitle}
                         onBlur={ () => this.changeBoardTitle() }
@@ -95,7 +95,7 @@ class Tableau extends React.Component {
                             <button
                                 type='button'
                                 onClick={ () => this.props.rmTableau(this.state.boardId) }
-                                className="btn btn-outline-danger"
+                                className="btn btn-outline-danger border-0"
                             >
                                 Delete board
                             </button>
@@ -104,9 +104,9 @@ class Tableau extends React.Component {
                             <button
                                 type='button'
                                 onClick={ () => this.addColumnToState() }
-                                className='btn btn-outline-secondary'
+                                className='btn btn-outline-secondary border-0'
                             >
-                                Ajouter une colonne
+                                Add a column
                             </button>
                         </div>
                     </div>

@@ -38,7 +38,7 @@ class VignetteModal extends React.Component {
                             <h4 className="modal-title" id="exampleModalLabel">
                                 <input 
                                     type='text' 
-                                    className='form-control' 
+                                    className='form-control border-0 fs-5' 
                                     id={this.state.stickerId + 'Title'} 
                                     defaultValue={this.state.stickerTitle} 
                                     onBlur={() =>{this.changeStickerTitle()}} 
