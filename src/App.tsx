@@ -1,7 +1,8 @@
-import './App.css';
+// import { useState } from 'react'
 import React from 'react';
 import Tableau from './component/Tableau/Tableau';
 import seed from './seed.json'; // array of tableau objects
+import './App.css';
 
 class App extends React.Component {
     constructor(props) {
