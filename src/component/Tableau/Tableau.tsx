@@ -12,20 +12,17 @@ class Tableau extends React.Component {
         this.state = this.props.dataTableau; // board object
     }
 
-    generateKey(){
-        let randomKey = 'ID' + (Math.random() + 1).toString(36).substring(6);
-        return randomKey;
+    generateKey(): string {
+        return 'ID' + (Math.random() + 1).toString(36).substring(6);
     }
 
-    changeBoardTitle(){
-        let newTitle = document.getElementById(this.state.boardId + 'Input').value;
+    changeBoardTitle(): void {
         // this.setState({ "boardTitle": newTitle });
-        this.props.sendUpdate( this.state.boardId, "boardTitle", newTitle );
+        this.props.sendUpdate( this.state.boardId, "boardTitle", document.getElementById(this.state.boardId + 'Input').value );
     }
 
-    getColumnElems(){
-        let columns = this.state.boardContent;
-        let elems = columns.map((value) =>
+    getColumnElems(): JSX.Element[] {
+        const elems = this.state.boardContent.map((value) =>
             <Colonne
                 key={value.colId}
                 rmColumn={this.rmColumnFromState}
@@ -37,29 +34,27 @@ class Tableau extends React.Component {
         return elems;
     }
 
-    addColumnToState() {
-        let columns = this.state.boardContent;
-        let newColumnNumber = columns.length + 1;
-        let newColumnTitle = 'Colonne ' + newColumnNumber.toString();
-        let newColumn = {"colTitle": newColumnTitle, "colId": this.generateKey(), "colOrder": newColumnNumber, "colContent": []};
+    addColumnToState(): void {
+        const columns = this.state.boardContent;
+        const newColumnNumber = columns.length + 1;
+        const newColumn = {"colTitle": 'Colonne ' + newColumnNumber.toString(), "colId": this.generateKey(), "colOrder": newColumnNumber, "colContent": []};
         columns.push(newColumn);
         this.setState({"boardContent": columns});
     }
 
-    rmColumnFromState(columnID) {
-        let columns = this.state.boardContent;
-        let newColumns = columns.filter((value) => {
+    rmColumnFromState(columnID): void {
+        const newColumns = this.state.boardContent.filter((value) => {
             return value.colId!==columnID;
         });
         this.setState({ "boardContent": newColumns });
     }
 
-    changeColumnsOrder(colId, isLeft){
-        let columns = this.state.boardContent;
-        let oldIndex = columns.findIndex((entry) => {
+    changeColumnsOrder(colId, isLeft): void {
+        const columns = this.state.boardContent;
+        const oldIndex = columns.findIndex((entry) => {
             return entry['colId']===colId;
         })
-        let columnToMove = columns[oldIndex];
+        const columnToMove = columns[oldIndex];
 
         if(isLeft && oldIndex!==0){ // moving to left
             columns.splice(oldIndex, 1);
@@ -71,7 +66,7 @@ class Tableau extends React.Component {
         this.setState({'boardContent': columns});
     }
 
-    render() {
+    render(): JSX.Element {
         return (
             <div className={'tableau tab-pane fade ' + ( this.props.isFirst ? "show active" : "")} id={this.state.boardId}  role="tabpanel">
                 <div className='my-3 container'>

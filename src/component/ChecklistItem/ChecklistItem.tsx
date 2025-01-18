@@ -12,17 +12,17 @@ class ChecklistItem extends React.Component {
         // "ChecklistChecked": bool
     }
 
-    changeState(stateProperty, newValue){
+    changeState(stateProperty, newValue): void {
         this.setState({ [stateProperty]: newValue });
     }
 
-    changeItemName(){
-        let newItemName = document.getElementById(this.state.checklistId + 'Name').value;
+    changeItemName(): void {
+        const newItemName = document.getElementById(this.state.checklistId + 'Name').value;
         // this.props.updateVignetteModalState("checklistName", newItemName);
         this.setState({ "checklistName": newItemName });
     }
 
-    render() {
+    render(): JSX.Element {
         return (
             <div className="input-group my-1">
                 <div className="input-group-text">

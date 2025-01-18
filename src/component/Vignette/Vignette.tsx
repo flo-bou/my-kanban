@@ -9,14 +9,14 @@ class Vignette extends React.Component {
         this.state = this.props.dataVignette; // sticker object
     }
 
-    updateVignetteState(stickerPropertyName, value){
+    updateVignetteState(stickerPropertyName, value): void {
         // read id of sticker passed as param
         // find index of stiker
         // replace object at the specified index of stickers
         this.setState({ [stickerPropertyName]: value })
     }
 
-    render() {
+    render(): JSX.Element {
         return (
             <div className="row my-1">
                 <div className="input-group">
