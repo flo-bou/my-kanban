@@ -10,32 +10,32 @@ class EndDate extends React.Component {
         // stickerEndDate is a string in format 2022-01-07 (yyyy-mm-dd)
     }
 
-    changeStickerEndDate(){
+    changeStickerEndDate(): void {
         // select input elem and read its value property
-        let newEndDate = document.getElementById('EndDateInput' + this.props.vignetteID).value;
+        const newEndDate = document.getElementById('EndDateInput' + this.props.vignetteID).value;
         this.props.updateVignetteModalState("stickerEndDate", newEndDate);
         this.setState({ "stickerEndDate": newEndDate }, function(){
             // console.log('Sticker object after changeStickerEndDate (Sticker component) : ', this.state);
         });
     }
 
-    toggleVisibility(){
+    toggleVisibility(): void {
         // si add a hide ? rmove from add and put into Content : rmove from Content and add to add
         document.getElementById('AddEndDate' + this.props.vignetteID).classList.toggle('hide');
         document.getElementById('EndDateContent' + this.props.vignetteID).classList.toggle('hide');
         // ajouter focus auto sur le textarea ?
     }
 
-    deleteEndDate(){
+    deleteEndDate(): void{
         document.getElementById('EndDateInput' + this.props.vignetteID).value = "";
         this.toggleVisibility();
         this.changeStickerEndDate();
     }
 
-    render() {
+    render(): JSX.Element {
         // for 1st render
-        let hideWhenEndDateEmpty = this.state.stickerEndDate==="" ? "hide" : "";
-        let hideWhenEndDateNotEmpty = !(this.state.stickerEndDate==="") ? "hide" : "";
+        const hideWhenEndDateEmpty = this.state.stickerEndDate==="" ? "hide" : "";
+        const hideWhenEndDateNotEmpty = !(this.state.stickerEndDate==="") ? "hide" : "";
 
         return (
             <div className="endDate container-fluid my-4">

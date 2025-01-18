@@ -16,26 +16,24 @@ class Checklist extends React.Component {
         // checklistChecked: bool
     }
 
-    toggleVisibility(){
+    toggleVisibility(): void {
         document.getElementById('ClBtn' + this.props.vignetteID).classList.toggle('hide');
         document.getElementById('Checklist' + this.props.vignetteID).classList.toggle('hide');
     }
 
-    deleteChecklist(){
+    deleteChecklist(): void {
         this.toggleVisibility();
-        let emptyArrays = [];
-        this.setState( {stickerChecklist: emptyArrays} );
+        this.setState( {stickerChecklist: []} );
     }
 
-    generateKey(){
-        let randomKey = 'ID' + (Math.random() + 1).toString(36).substring(6);
-        return randomKey;
+    generateKey(): string {
+        return 'ID' + (Math.random() + 1).toString(36).substring(6);
     }
 
-    getChecklistItemElems(){
-        let checklistItems = this.state.stickerChecklist;
+    getChecklistItemElems(): JSX.Element[] {
+        const checklistItems = this.state.stickerChecklist;
         // console.log('colonnes data in getChecklistItemElems func (Tableau component) : ', checklistItems);
-        let elems = checklistItems.map((value) =>
+        const elems: JSX.Element[] = checklistItems.map((value) =>
             <ChecklistItem
                 key={value.checklistId}
                 stickerChecklist={value}
@@ -49,27 +47,26 @@ class Checklist extends React.Component {
         return elems;
     }
 
-    addChecklistItemToState() {
-        let checklistItems = this.state.stickerChecklist;
-        let newChecklistItemNumber = checklistItems.length + 1;
-        let newChecklistItemName = 'Tâche ' + newChecklistItemNumber.toString();
-        let newChecklistItem = {"checklistName": newChecklistItemName, "checklistId": this.generateKey(), "checklistChecked": false};
+    addChecklistItemToState(): void {
+        const checklistItems = this.state.stickerChecklist;
+        const newChecklistItemName = 'Tâche ' + (checklistItems.length + 1).toString();
+        const newChecklistItem = {"checklistName": newChecklistItemName, "checklistId": this.generateKey(), "checklistChecked": false};
         checklistItems.push(newChecklistItem);
         // console.log('colonnes data in addChecklist func (Tableau component) : ', checklists);
         this.setState({"stickerChecklist": checklistItems});
     }
 
-    rmChecklistItem(checklistItemID) {
-        let checklistItems = this.state.stickerChecklist;
-        let newChecklistItems = checklistItems.filter((value) => {
+    rmChecklistItem(checklistItemID): void {
+        const checklistItems = this.state.stickerChecklist;
+        const newChecklistItems = checklistItems.filter((value) => {
             return value.checklistId!==checklistItemID;
         });
         this.setState({ "stickerChecklist": newChecklistItems });
     }
 
-    render() {
-        let hideWhenClEmpty = this.state.stickerChecklist.length===0 ? "hide" : "";
-        let hideWhenClNotEmpty = this.state.stickerChecklist.length!==0 ? "hide" : "";
+    render(): JSX.Element {
+        const hideWhenClEmpty = this.state.stickerChecklist.length===0 ? "hide" : "";
+        const hideWhenClNotEmpty = this.state.stickerChecklist.length!==0 ? "hide" : "";
 
         return (
             <div className="vignetteModalChecklist container-fluid my-4">

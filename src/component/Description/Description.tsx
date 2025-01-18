@@ -9,31 +9,31 @@ class Description extends React.Component {
         this.state = { stickerDescription: this.props.vignetteDescription };
     }
 
-    changeStickerDescription(){
+    changeStickerDescription(): void {
         // select input elem and read its value property
-        let newDescription = document.getElementById(this.props.vignetteID + 'Description').value;
+        const newDescription = document.getElementById(this.props.vignetteID + 'Description').value;
         this.props.updateVignetteModalState("stickerDescription", newDescription);
         this.setState({ "stickerDescription": newDescription }, function(){
             // console.log('Sticker object after changeStickerDescription (Sticker component) : ', this.state);
         });
     }
 
-    toggleVisibility(){
+    toggleVisibility(): void{
         document.getElementById('DescBtn' + this.props.vignetteID).classList.toggle('hide');
         document.getElementById('Desc' + this.props.vignetteID).classList.toggle('hide');
         // ajouter focus auto sur le textarea ?
     }
 
-    deleteDescription(){
+    deleteDescription(): void{
         document.getElementById(this.props.vignetteID + 'Description').value = "";
         this.toggleVisibility();
         this.changeStickerDescription();
     }
 
-    render() {
+    render(): JSX.Element {	
         // for 1st render
-        let hideWhenDescEmpty = this.state.stickerDescription==="" ? "hide" : "";
-        let hideWhenDescNotEmpty = !(this.state.stickerDescription==="") ? "hide" : "";
+        const hideWhenDescEmpty = this.state.stickerDescription==="" ? "hide" : "";
+        const hideWhenDescNotEmpty = !(this.state.stickerDescription==="") ? "hide" : "";
 
         return (
             <div className="vignetteModalDescription container-fluid my-4">

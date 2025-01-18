@@ -12,23 +12,22 @@ class VignetteModal extends React.Component {
         this.state = this.props.dataVignette; // sticker object
     }
 
-    generateKey(){
-        let randomKey = 'ID' + (Math.random() + 1).toString(36).substring(6);
-        return randomKey;
+    generateKey(): string{
+        return 'ID' + (Math.random() + 1).toString(36).substring(6);;
     }
 
-    changeStickerTitle(){
+    changeStickerTitle(): void {
         // select input elem and read its value prop
-        let newTitle = document.getElementById(this.state.stickerId + 'Title').value;
+        const newTitle = document.getElementById(this.state.stickerId + 'Title').value;
         this.setState({ "stickerTitle": newTitle });
         this.props.updateVignetteState("stickerTitle", newTitle);
     }
 
-    updateVignetteModalState(stickerPropertyName, value){
+    updateVignetteModalState(stickerPropertyName, value): void {
         this.setState({ [stickerPropertyName]: value })
     }
 
-    render() {
+    render(): JSX.Element {
         return (
             <div className="modal fade" id={this.state.stickerId + 'Modal'} aria-labelledby={this.state.stickerId + 'Modal'} aria-hidden="true">
                 <div className="modal-dialog">

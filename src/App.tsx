@@ -1,7 +1,7 @@
-import './App.css';
 import React from 'react';
 import Tableau from './component/Tableau/Tableau';
 import seed from './seed.json'; // array of tableau objects
+import './App.css';
 
 class App extends React.Component {
     constructor(props) {
@@ -14,15 +14,13 @@ class App extends React.Component {
         this.state = { tableaus: seed } ;  // array of tableau objects
     }
 
-    generateKey(){
-        let randomKey = 'ID' + (Math.random() + 1).toString(36).substring(6);
-        return randomKey;
+    generateKey(): string {
+        return 'ID' + (Math.random() + 1).toString(36).substring(6);;
     }
 
-    getTableauElems(){
-        let tableaus = this.state.tableaus;
+    getTableauElems(): JSX.Element[] {
         // console.log('tableaus data in getTableauElems (Colonne component) : ', tableaus);
-        let elems = tableaus.map((value, index) =>
+        const elems = this.state.tableaus.map((value, index) =>
             <Tableau
                 key={value.boardId}
                 rmTableau={this.rmTableauFromState}
@@ -34,18 +32,17 @@ class App extends React.Component {
         return elems;
     }
 
-    addTableauToState() {
-        let tableaus = this.state.tableaus;
-        let newTableauNumber = tableaus.length + 1;
-        let newTableauTitle = 'Tableau ' + newTableauNumber.toString();
-        let newTableau = { "boardTitle": newTableauTitle, "boardId": this.generateKey(), "boardContent": [] };
+    addTableauToState(): void {
+        const tableaus = this.state.tableaus;
+        const newTableauNumber = tableaus.length + 1;
+        const newTableau = { "boardTitle": 'Tableau ' + newTableauNumber.toString(), "boardId": this.generateKey(), "boardContent": [] };
         tableaus.push(newTableau);
         // console.log('tableaus data in addTableau func (Colonne component) : ', tableaus);
         this.setState({ "tableaus": tableaus });
     }
 
-    getUpdate(tableauId, propertyName, value) {
-		let index;
+    getUpdate(tableauId, propertyName, value): void {
+		let index: number;
 		let newTableaus = this.state.tableaus;
 		newTableaus.forEach((value, i) => {
 			if(value['boardId']===tableauId){
@@ -56,17 +53,15 @@ class App extends React.Component {
 		this.setState( { "tableaus": newTableaus } );
     }
 
-    rmTableauFromState(tableauId) {
-        let tableaus = this.state.tableaus;
-        let newTableaus = tableaus.filter((value) => {
+    rmTableauFromState(tableauId): void {
+        const newTableaus = this.state.tableaus.filter((value) => {
             return value.boardId!==tableauId;
         });
         this.setState({ "tableaus": newTableaus });
     }
 
-	getTabElems(){
-        let tableaus = this.state.tableaus;
-        let elems = tableaus.map((value) =>
+	getTabElems(): JSX.Element[] {
+        const elems = this.state.tableaus.map((value) =>
             <li className="nav-item" key={value.boardId + "Tab"}>
                 <button
                     type="button"
@@ -83,7 +78,7 @@ class App extends React.Component {
         return elems;
     }
 
-    render() {
+    render(): JSX.Element {
 		return (
 			<div className="App">
 				<header>

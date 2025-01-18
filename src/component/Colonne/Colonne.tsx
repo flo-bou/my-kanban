@@ -13,15 +13,14 @@ class Colonne extends React.Component {
         this.state = this.props.dataColonne; // column object
     }
 
-    generateKey(){
-        let randomKey = 'ID' + (Math.random() + 1).toString(36).substring(6);
-        return randomKey;
+    generateKey(): string {
+        return 'ID' + (Math.random() + 1).toString(36).substring(6);
     }
 
-    getStickerElems(){
-        let stickers = this.state.colContent;
+    getStickerElems(): JSX.Element[] {
+        // const stickers = this.state.colContent;
         // console.log('stickers data in getStickerElems (Colonne component) : ', stickers);
-        let elems = stickers.map((value) =>
+        const elems = this.state.colContent.map((value) =>
             <Vignette
                 key={value.stickerId}
                 rmSticker={this.rmStickerFromState}
@@ -32,39 +31,45 @@ class Colonne extends React.Component {
         return elems;
     }
 
-    addStickerToState() {
-        let stickers = this.state.colContent;
-        let newStickerNumber = stickers.length + 1;
-        let newStickerTitle = 'Vignette ' + newStickerNumber.toString();
-        let newSticker = { "stickerTitle": newStickerTitle, "stickerDescription": "", "stickerId": this.generateKey(), "stickerOrder": newStickerNumber, "stickerTag": "", "stickerEndDate": "", "stickerChecklist": [] };
+    addStickerToState(): void {
+        const stickers = this.state.colContent;
+        const newStickerNumber = stickers.length + 1;
+        const newSticker = { 
+            "stickerTitle": 'Vignette '+newStickerNumber.toString(), 
+            "stickerDescription": "", 
+            "stickerId": this.generateKey(), 
+            "stickerOrder": newStickerNumber, 
+            "stickerTag": "", 
+            "stickerEndDate": "", 
+            "stickerChecklist": [] 
+        };
         stickers.push(newSticker);
         // console.log('stickers data in addSticker func (Colonne component) : ', stickers);
         this.setState({ "colContent": stickers });
     }
 
-    changeColumnTitle(){
+    changeColumnTitle(): void {
         // select input elem and read its value prop
-        let newTitle = document.getElementById(this.state.colId + 'Input').value;
-        this.setState({ "colTitle": newTitle }, function(){
+        this.setState({ "colTitle": document.getElementById(this.state.colId + 'Input').value }, function(){
             // console.log('Column object after changeColumnTitle (Colonne component) : ', this.state);
         });
     }
 
-    rmStickerFromState(stickerID) {
-        let stickers = this.state.colContent;
-        let newStickers = stickers.filter((value) => {
+    rmStickerFromState(stickerID): void {
+        const stickers = this.state.colContent;
+        const newStickers = stickers.filter((value) => {
             return value.stickerId!==stickerID;
         });
         // console.log('newStickers data in rmStickerFromState func (Colonne component) : ', newStickers);
         this.setState({ "colContent": newStickers });
     }
 
-    changeStickerOrder(stickerId, isUp){
-        let stickers = this.state.colContent;
-        let oldIndex = stickers.findIndex((entry) => {
+    changeStickerOrder(stickerId, isUp): void {
+        const stickers = this.state.colContent;
+        const oldIndex = stickers.findIndex((entry) => {
             return entry['stickerId']===stickerId;
         })
-        let stickerToMove = stickers[oldIndex];
+        const stickerToMove = stickers[oldIndex];
 
         if(isUp && oldIndex!==0){ // moving to left
             stickers.splice(oldIndex, 1);
@@ -77,7 +82,7 @@ class Colonne extends React.Component {
         // je renvoie le nouveau tableau dans state (vais-je perdre des données ? surement : il va falloir faire remonter toutes les données dans tableau)
     }
 
-    render() {
+    render(): JSX.Element {
         return (
             <div className='colonne'>
                 <div className="container border rounded border-secondary">
