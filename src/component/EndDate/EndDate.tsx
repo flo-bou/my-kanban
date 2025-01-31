@@ -45,14 +45,14 @@ class EndDate extends React.Component {
                         className={"btn btn-sm btn-outline-secondary border-0 "}
                         onClick={() => {this.toggleVisibility()} }
                     >
-                        Ajouter une date d'échéance.
+                        Add end date.
                     </button>
                 </div>
                 <div className={hideWhenEndDateEmpty} id={'EndDateContent' + this.props.vignetteID}>
                     <div className="input-group">
                         <span className="input-group-text">
                             <label htmlFor={'EndDateInput' + this.props.vignetteID} className="">
-                                Échéance
+                                End date
                             </label>
                         </span>
                         <input
@@ -69,7 +69,7 @@ class EndDate extends React.Component {
                             className="btn btn-sm btn-outline-danger"
                             onClick={ () => {this.deleteEndDate()} }
                         >
-                            Del
+                            Delete
                         </button>
                     </div>
                 </div>

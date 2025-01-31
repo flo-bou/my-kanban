@@ -104,7 +104,7 @@ class Colonne extends React.Component {
                     {this.getStickerElems()}
 
                     <div className="row">
-                        <button type='button' onClick={() => {this.addStickerToState()}} className='col btn btn-sm btn-outline-secondary' title='Ajouter une vignette'>Ajouter</button>
+                        <button type='button' onClick={() => {this.addStickerToState()}} className='col btn btn-sm btn-outline-secondary' title='Add a sticker'>Add</button>
                     </div>
                 </div>
             </div>

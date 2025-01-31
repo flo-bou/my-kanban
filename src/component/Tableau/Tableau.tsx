@@ -101,7 +101,7 @@ class Tableau extends React.Component {
                                 onClick={ () => this.addColumnToState() }
                                 className='btn btn-outline-secondary'
                             >
-                                Ajouter une colonne
+                                Add column
                             </button>
                         </div>
                     </div>

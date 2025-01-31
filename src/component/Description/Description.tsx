@@ -40,7 +40,7 @@ class Description extends React.Component {
                 <div className={hideWhenDescNotEmpty} id={'DescBtn' + this.props.vignetteID}>
                     <div className="row">
                         <button type="button" className='btn btn-sm btn-outline-secondary border-0' onClick={() => {this.toggleVisibility()} }>
-                            Ajouter une description.
+                            Add description.
                         </button>
                     </div>
                 </div>
@@ -61,7 +61,7 @@ class Description extends React.Component {
                             className='btn btn-sm btn-outline-danger'
                             onClick={() => {this.deleteDescription()} }
                         >
-                            Del
+                            Delete
                         </button>
                     </div>
                 </div>

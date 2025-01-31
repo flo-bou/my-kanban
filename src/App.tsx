@@ -92,7 +92,7 @@ class App extends React.Component {
 								className="btn btn-outline-secondary "
 								onClick={ () => this.addTableauToState() }
 							>
-								Add a board
+								Add board
 							</button>
 						</div>
 					</nav>
